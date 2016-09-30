@@ -1,2 +1,4 @@
-print ("hello maxsuel_medeiros!")
+nome=input("maxsuel_medeiros:")
+
+print ("hello" +nome)
 
