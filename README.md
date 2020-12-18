@@ -1,1 +1,2 @@
 # testegithub
+Esse repositorio inicialmente foi só para testar inicialmente a ferramenta do Github, agora também serve para adicionar alguns códigos trabalhados, pequenos que não são necessariamente de projetos, mas que me ajudaram quando eu estava trabalhando. Alguns dos arquivos são em Python utilizando o Jupyter Notebook, esses arquivos utilizam o Pandas, para organizar e corrigir alguns dados em massa.
