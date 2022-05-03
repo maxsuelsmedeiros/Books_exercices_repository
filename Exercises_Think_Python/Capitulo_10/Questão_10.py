@@ -1,4 +1,5 @@
 import math
+import statistics
 import bisect as bi
 def main():
     bag=open("Exercises_Think_Python/words.txt")
@@ -17,7 +18,7 @@ def main():
             return position
         else:
             return "None"
-    print(in_bisect(bag_of_words,"yawl"))
+
     print("--------------------------------------------------------------")
     #Using recurtion to verify if the word exist in the file
     def in_bisect_recursive(bag,word):
@@ -40,8 +41,7 @@ def main():
                 return in_bisect_recursive(bag[position:],word)
 
     #function that takes half of the size each time but has a limit           
-    def in_bisect_recursive_n_iterations(bag,word,countdown,position):
-        print("here lies",position)
+    def in_bisect_recursive_n_iterations(bag,word,countdown,position,minus,maximum):
         '''
         if (end+start)%2==0:
             position=int((end+start)/2)
@@ -49,8 +49,6 @@ def main():
             position=int(math.floor((end+start)/2))
         '''
         if bag[position]==word:
-            return position
-        elif countdown==0 and bag[position]==word:
             return position
         elif countdown==0 and bag[position]!=word:
             return "None"
@@ -62,17 +60,21 @@ def main():
                 position=int(math.floor((end-start)))
             '''
             if word<bag[position]:
-                print(position,"minus")
-                return in_bisect_recursive_n_iterations(bag,word,countdown-1,int(math.floor(position/2)))
-            else:
-                
-                if position+(position/2)>len(bag):
-                    minus=int(math.floor((len(bag)-position)/2))
-                    position=position+minus
+
+                mediana=[]
+                maximum=position
+                for i in range(minus,maximum-1):
+                    mediana.append(int(i))
+                if len(mediana)>1:
+                    position=int(statistics.median(mediana))
                 else:
-                    position=position+int(math.floor(position/2))
-                print(position,"plus")
-                return in_bisect_recursive_n_iterations(bag,word,countdown-1,position)
+                    position=0
+                return in_bisect_recursive_n_iterations(bag,word,countdown-1,position,minus,maximum)
+            else:
+
+                minus=position
+                position=int(math.floor((position+maximum)/2))
+                return in_bisect_recursive_n_iterations(bag,word,countdown-1,position,minus,maximum)
     
     
     #Function that verify if the middle of the list is even or odd           
@@ -96,11 +98,10 @@ def main():
                 tam=int(math.floor(tam/2))
                 count+=1
         return count
-
-    print(in_bisect_recursive(bag_of_words,"yawl"))
+    print(in_bisect(bag_of_words,"departed"))
+    print(in_bisect_recursive(bag_of_words,"departed"))
     print("==========================================")
-    print(in_bisect_recursive_n_iterations(bag_of_words,"corn",count_div(bag_of_words),is_odd_or_even(bag_of_words)))
-            
+    print(in_bisect_recursive_n_iterations(bag_of_words,"departed",count_div(bag_of_words),is_odd_or_even(bag_of_words),0,len(bag_of_words)-1))
 
 if __name__=='__main__':
     main()
