@@ -13,8 +13,7 @@ def main():
     def enhanced_inverse_dict(normal_dict):
         invert_dict={}
         for key in normal_dict:
-            print(invert_dict.setdefault(normal_dict[key],[]))
-            invert_dict[normal_dict[key]]=invert_dict[normal_dict[key]].append(key)
+            invert_dict.setdefault(normal_dict[key],[]).append(key)
             #invert_dict.setdefault(normal_dict[key],[key].append(invert_dict.setdefault(normal_dict[key],[key])))
         return invert_dict
     test_dict={"pena":4,"tutor":5,"mais":4,"lupa":4,"teste":5,"alo":3}
