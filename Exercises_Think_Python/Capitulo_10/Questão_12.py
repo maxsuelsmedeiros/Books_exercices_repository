@@ -54,8 +54,7 @@ def main():
             for j in bag:
                 if j!=i:
                     new_word=join_words(i,j)
-                    if new_word in bag and new_word not in list_new_word and is_empty(list_new_word) is False:
-                        print("HEHE")
+                    if in_bisect(bag,new_word) != "None":
                         list_new_word.append(new_word)
         return list_new_word
     print(new_words(bag_of_words))

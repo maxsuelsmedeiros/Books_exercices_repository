@@ -1,8 +1,9 @@
 import math
 import statistics
 import bisect as bi
+import time
 def main():
-    bag=open("Exercises_Think_Python/words.txt")
+    bag=open("Exercises_Think_Python/words_english.txt")
     def remove_useless_simbols(bag):
         new_bag=[]
         for word in bag:
@@ -98,10 +99,20 @@ def main():
                 tam=int(math.floor(tam/2))
                 count+=1
         return count
-    print(in_bisect(bag_of_words,"departed"))
-    print(in_bisect_recursive(bag_of_words,"departed"))
-    print("==========================================")
-    print(in_bisect_recursive_n_iterations(bag_of_words,"departed",count_div(bag_of_words),is_odd_or_even(bag_of_words),0,len(bag_of_words)-1))
+    start_function=time.time()
+    bisect_operation=in_bisect(bag_of_words,"departed")
+    end_function=time.time()
+    print("The word 'departed' were found in the position {} using the bisect method, and took {} seconds to finish".format(bisect_operation,end_function-start_function))
+    print("-------------------------------------------------".center(200))
+    start_function=time.time()
+    bisect_operation_recursive=in_bisect_recursive(bag_of_words,"departed")
+    end_function=time.time()
+    print("The word 'departed' were found in the position {} using the bisect method, and took {} seconds to finish".format(bisect_operation_recursive,end_function-start_function))
+    print("++++++++++++++++++++++++++++++++++++++++++++++++".center(200))
+    start_function=time.time()
+    bisect_n_interations=in_bisect_recursive_n_iterations(bag_of_words,"departed",count_div(bag_of_words),is_odd_or_even(bag_of_words),0,len(bag_of_words)-1)
+    end_function=time.time()
+    print("The word 'departed' were found in the position {} using the bisect method, and took {} seconds to finish".format(bisect_n_interations,end_function-start_function))
 
 if __name__=='__main__':
     main()
