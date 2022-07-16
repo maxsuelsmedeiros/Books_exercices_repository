@@ -1,3 +1,6 @@
+# from dis import _HaveCodeOrStringType
+from turtle import width
+from more_itertools import unzip
 import unidecode
 import re
 from matplotlib import pyplot as plt
@@ -27,13 +30,15 @@ def main():
         tuple_dict=()
         tuple_dict=zip(t.items())
             
-        return tuple_dict
+        return t
     path_sample1="/home/maxssdlinux/Documentos/Books_exercices_repository/Exercises_Think_Python/language_samples.txt"
+    path_sample2="/home/maxssdlinux/Documentos/Books_exercices_repository/Exercises_Think_Python/emma.txt"
     sample_language=organize_the_text(path_sample1)
     main_letters_per_language=most_frequent(sample_language)
-    for language in main_letters_per_language:
-        print(language)
+    for language,letters in main_letters_per_language.items():
+        print(language,letters)
         print("+++++++++++++++++++++++++++++++++++++++++++".center(100))
+    
 
 if __name__=='__main__':
     main()
