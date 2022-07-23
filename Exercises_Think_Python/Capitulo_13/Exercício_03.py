@@ -21,9 +21,20 @@ def main():
         count_words["total_number_of_words_are:"]=len(book)
         for word in book:
             count_words[word]=count_words.get(word,0)+1
-        count_words=sorted(count_words.items(),key=lambda x: x[1],reverse=True)
-        if '' in count_words: del count_words['']
+        count_words=dict(sorted(count_words.items(),key=lambda x: x[1],reverse=True))
+        if '' in count_words: del count_words[''] 
         return count_words
+    #returns the n first values in the dicionary sorted by descending order
+    def most_n_used_words(words_dictionary,n_elements=20):
+        most_used_words=dict()
+        index=0
+        for key,value in words_dictionary.items():
+            if index<=n_elements:
+                most_used_words[key]=value
+                index+=1
+            else:
+                return most_used_words
+        return 0
 
     #oppening the LITTLE HICKORY book
     gut_lh=open("/home/maxssdlinux/Documentos/Books_exercices_repository/Exercises_Think_Python/gut.txt")
@@ -32,7 +43,9 @@ def main():
     for index,line in enumerate(gut_lh):
         if index>=79 and index<5733:
             book_lh.append(str(line).rstrip("\n"))
-    print(number_of_words(clear_book(book_lh)))
+    dict_number_words=number_of_words(clear_book(book_lh))
+    print(most_n_used_words(dict_number_words))
+
 
 if __name__=='__main__':
     main()
